@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+using std::cout;
+char* Display;
+char CharOnCell = 2;
+int* TestMap;
+
+void randMap()
+{
+    TestMap = new int[1600];
+    for (int i = 0; i < 1600; i++)
+    {
+        TestMap[i] = rand();
+    }
+}
+
+void MapToDisplay(int* Map, int SX, int SY)
+{
+    for (int i = 0; i < SY; i++)
+    {
+        for (int ii = 0; ii < SX; ii++)
+        {
+            for (int iii = 0; iii < CharOnCell; iii++)
+                Display[(i * (SX * CharOnCell + 1)) + ii * CharOnCell + iii] = Map[i * SX + ii] > 20000 ? 219 : ' ';
+        }
+        Display[(i + 1) * SX * CharOnCell + i] = '\n';
+    }
+    Display[SY * SX * CharOnCell + SY - 1] = 0;
+}
+
+void draw()
+{
+    cout << Display;
+}
+
+void ClearSereen()
+{
+    system("cls");
+}
+
+void InitDisplay(char COC, int SX, int SY)
+{
+    CharOnCell = COC;
+    if (Display == NULL)
+        delete[](Display);
+    Display = new char[(SX * CharOnCell + 1) * SY];
+}
+
+
+
+int main()
+{
+    randMap();
+    InitDisplay(2, 40, 40);
+    MapToDisplay(TestMap, 40, 40);
+    draw();
+}
