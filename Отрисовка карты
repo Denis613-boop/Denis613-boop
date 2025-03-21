@@ -1,0 +1,19 @@
+#include <iostream>
+#include <map>
+#include <vector>
+using namespace std;
+
+void drawMap(window, vector & map)
+{
+    for (const auto & block : map) {
+        window.draw(block.shape);
+    }
+}
+
+int main()
+{
+    drawMap(window, vector & map);
+    window.clear();
+    drawMap(window, map);
+    window.display();
+}
